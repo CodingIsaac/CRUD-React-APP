@@ -19,6 +19,22 @@ const movies = [
 
   },
   {
+    _id: "5b21ca3feeb7f6fbccd471816",
+    title: "Hard Richy Hard",
+    genre: { _id: "5b21ca3eebf7f6fbccd471818", name: "Action" },
+    numberInStock: 5,
+    dailyRentalRate: 3.5
+
+  },
+  {
+    _id: "5b21ca3eeb7f6fbccd471816",
+    title: "Black Adamson",
+    genre: { _id: "5b21cffa3eeb7f6fbccd471818", name: "Action" },
+    numberInStock: 7,
+    dailyRentalRate: 1.5
+
+  },
+  {
     _id: "5b21ca3eeb7f6fbccd471817",
     title: "Get Out",
     genre: { _id: "5b21ca3eeb7f6fbccd471820", name: "Thriller" },
