@@ -6,6 +6,7 @@ import Pagination from "./common/pagination";
 class Movies extends Component {
   state = {
     movies: getMovies(),
+    currentPage: 1,
     pageSize: 4,
   };
 
@@ -30,6 +31,7 @@ class Movies extends Component {
     const { length: moviesCount } = this.state.movies; 
     if (moviesCount === 0)
         return<p>We have no movies at the moment</p>
+    const { pageSize, currentPage } = this.state;
     return (
         <Fragment>
         <p>Showing {moviesCount} movies in our Show Room</p>
@@ -69,7 +71,8 @@ class Movies extends Component {
       </table>
       <Pagination
       itemsCount={moviesCount} 
-      pageSize = {this.state.pageSize}
+      pageSize = {pageSize}
+      currentPage={currentPage}
       onPageChange ={this.pageChangeHandler}
       
       />
