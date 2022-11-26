@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from "react";
 import { getMovies } from "../services/fakeMovieService";
+import { paginate } from "../utils/paginate";
 import LikeButton from "./common/like";
 import Pagination from "./common/pagination";
 
@@ -23,7 +24,8 @@ class Movies extends Component {
     this.setState({ movies })
 
   }
-  pageChangeHandler = (page) => {
+  pageChangeHandler = page => {
+    this.setState({ currentPage: page });
 
   }
   render() {
@@ -31,7 +33,11 @@ class Movies extends Component {
     const { length: moviesCount } = this.state.movies; 
     if (moviesCount === 0)
         return<p>We have no movies at the moment</p>
-    const { pageSize, currentPage } = this.state;
+    const { pageSize, currentPage, movies: allMovies } = this.state;
+
+    const movies = paginate(allMovies, currentPage, pageSize )
+
+
     return (
         <Fragment>
         <p>Showing {moviesCount} movies in our Show Room</p>
@@ -46,7 +52,7 @@ class Movies extends Component {
           </tr>
         </thead>
         <tbody>
-          {this.state.movies.map((movie) => (
+          {movies.map((movie) => (
             <tr key={movie._id}>
               <td>{movie.title}</td>
               <td>{movie.genre.name}</td>
