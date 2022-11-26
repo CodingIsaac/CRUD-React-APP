@@ -93,7 +93,7 @@ const movies = [
   {
     _id: "58b21ca3eeddSb7f6fbccd471821",
     title: "Akunamanjaja",
-    genre: { _id: "5b21ca3eejjb7f6fbccd471818", name: "Bombastic" },
+    genre: { _id: "5b21ca3eejjb7f6fbccd471818", name: "Action" },
     numberInStock: 7,
     dailyRentalRate: 4.5
     

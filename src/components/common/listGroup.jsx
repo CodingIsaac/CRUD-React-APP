@@ -1,19 +1,32 @@
 import React, { Component, Fragment } from "react";
 
 const ListGroup = (props) => {
-  const { items } = props;
+  const { items, textProperty, valueProperty, selectedItem, onItemSelect } =
+    props;
 
   return (
     <Fragment>
       <ul className="list-group">
         {items.map((item) => (
-          <li key={item._id} className="list-group-item">
-            {item.name}
+          <li
+            onClick={() => onItemSelect(item)}
+            key={item[valueProperty]}
+            className={
+              item === selectedItem
+                ? "list-group-item active"
+                : "list-group-item"
+            }
+          >
+            {item[textProperty]}
           </li>
         ))}
       </ul>
     </Fragment>
   );
+};
+ListGroup.defaultProps = {
+  textProperty: "name",
+  valueProperty: "_id",
 };
 
 export default ListGroup;

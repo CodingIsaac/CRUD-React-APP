@@ -14,8 +14,7 @@ class Movies extends Component {
     pageSize: 4,
   };
   componentDidMount() {
-    this.setState({movies: getMovies(), genres: getGenres() })
-
+    this.setState({ movies: getMovies(), genres: getGenres() });
   }
 
   handleDelete = (movie) => {
@@ -34,20 +33,36 @@ class Movies extends Component {
     this.setState({ currentPage: page });
   };
   genreSelectionHandler = (genre) => {
-
-  }
+    this.setState({ selectedGenre: genre });
+  };
 
   render() {
     const { length: moviesCount } = this.state.movies;
+    const {
+      pageSize,
+      currentPage,
+      selectedGenre,
+      movies: allMovies,
+    } = this.state;
+
     if (moviesCount === 0) return <p>We have no movies at the moment</p>;
-    const { pageSize, currentPage, movies: allMovies } = this.state;
-
-    const movies = paginate(allMovies, currentPage, pageSize);
-
+    
+    
+    const filtered = selectedGenre
+    ? allMovies.filter(m => m.genre._id === selectedGenre._id)
+    : allMovies;
+    
+    const movies = paginate(filtered, currentPage, pageSize);
     return (
       <div className="row">
-        <div className="col-2">
-          <ListGroup items={this.state.genres} onItemSelect={this.genreSelectionHandler} />
+        <div className="col-3">
+          <ListGroup
+            items={this.state.genres}
+            textProperty="name"
+            valueProperty="_id"
+            onItemSelect={this.genreSelectionHandler}
+            selectedItem={this.state.selectedGenre}
+          />
         </div>
         <div className="col">
           <p>Showing {moviesCount} movies in our Show Room</p>
@@ -88,7 +103,7 @@ class Movies extends Component {
             </tbody>
           </table>
           <Pagination
-            itemsCount={moviesCount}
+            itemsCount={filtered.length}
             pageSize={pageSize}
             currentPage={currentPage}
             onPageChange={this.pageChangeHandler}
