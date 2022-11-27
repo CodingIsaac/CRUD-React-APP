@@ -28,7 +28,7 @@ const movies = [
   },
   {
     _id: "5b21cXa3eedddSb7f6fbccd471816",
-    title: "Black Adamson",
+    title: "Ajon",
     genre: { _id: "5b21cffa3eeb7f6fbccd471818", name: "Action" },
     numberInStock: 7,
     dailyRentalRate: 1.5
@@ -92,7 +92,7 @@ const movies = [
   },
   {
     _id: "58b21ca3eeddSb7f6fbccd471821",
-    title: "Akunamanjaja",
+    title: "America",
     genre: { _id: "5b21ca3eejjb7f6fbccd471818", name: "Action" },
     numberInStock: 7,
     dailyRentalRate: 4.5
